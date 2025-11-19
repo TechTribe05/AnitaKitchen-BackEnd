@@ -1,0 +1,6 @@
+{
+    "watch": [ "server.js", "apidoc.yaml"],
+    "ext": "js, yaml",
+    "ignore": ["node_modules/"],
+    "exec": "node server.js"
+}

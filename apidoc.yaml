@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: Chowdeck2
+  description: Api v1 Documentation for Chowdeck2
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:9000/api/v1
+
+paths:
+  /item/all-items:
+    get:
+      tags:
+        - Items
+      summary: Lists all food items from different vendors
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "2737ncmch3482dhecn2346knd"
+        name:
+          type: string
+          example: "Ofada"
+        price:
+          type: number
+          example: 5500
+        unit:
+          type: string
+          example: "spoon"
+      required:
+        - name
+        - price
+        - unit
+        - vendor
+  parameters:
+    itemsNameQuery:
+      in: path
+      name: itemsName
+      schema:
+        type: string
+      description: name of the food items
+      required: true
+    responses: 
+      Badrequest:
+        description: Bad request
+        content: 
+          application/json:
+            schema:
+              type:
+              properties:
+                message:
+                  type: string
+            example: { success: false, message: Bad request from client }
